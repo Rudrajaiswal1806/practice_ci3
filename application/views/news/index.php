@@ -32,6 +32,7 @@
                 <td>
                     <?php echo anchor ('news/edit/'.$news->id, 'Edit'."&nbsp;&nbsp;&nbsp;") ?>
                     <?php echo anchor ('news/delete/'.$news->id, 'Delete') ?>
+                    <?php echo anchor ('news/details/'.$news->id, 'Details') ?>
                 </td>
             </tr>
         <?php } ?>

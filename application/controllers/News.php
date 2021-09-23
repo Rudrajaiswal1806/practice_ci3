@@ -23,8 +23,8 @@ class News extends CI_Controller {
 	}
 
 	public function add(){
-		$username = 'Manoj';
-		$email = 'manoj@gmail.com';
+		$username = 'Basu';
+		$email = 'basu@gmail.com';
 
 		$newsdata = array(
 			'username' => $username,
@@ -37,8 +37,32 @@ class News extends CI_Controller {
 		redirect('news');
 	}
 
-	// public function first($param1, $param2)
-	// {
-	// 	echo 'Details News'.$param1. ''$param2;
-	// }
+	public function edit($id){
+		$username = 'Basu';
+		$email = 'basoo@gmail.com';
+
+		$newsdata = array(
+			'username' => $username,
+			'email' => $email,
+			'active' => '0'	
+		);
+
+		$news_id = $this->news_model->update_news($id,$newsdata);
+		$this->session->set_flashdata('message','Record has been updated');
+		redirect('news');
+	}
+
+	public function delete($id){
+		$this->news_model->del_news($id);
+		$this->session->set_flashdata('message','Record has been deleted');
+		redirect('news');
+	}
+
+	public function details($id){
+		$news = $this->news_model->gett_news($id);
+		$data ['title'] = $news->username;
+		//$data ['title'] = $news['username'];
+		$data ['news'] = $news;
+		$this->load->view('news/details', $data);
+    }
 }
